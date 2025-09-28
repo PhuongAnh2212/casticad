@@ -1,21 +1,18 @@
-"use client"; // Required for React hooks
+"use client";
 
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
-// Dynamic import Plotly to avoid SSR issues
 const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 
-const ConnectomeAnimation = ({ jsonPath }) => {
+export default function BrainConnectome({ jsonPath }) {
   const [frames, setFrames] = useState([]);
   const [step, setStep] = useState(0);
 
   useEffect(() => {
     fetch(jsonPath)
       .then((res) => res.json())
-      .then((data) => {
-        setFrames(data);
-      });
+      .then((data) => setFrames(data));
   }, [jsonPath]);
 
   if (frames.length === 0) return <p>Loading connectome...</p>;
@@ -23,7 +20,6 @@ const ConnectomeAnimation = ({ jsonPath }) => {
   const nodes = frames[step].nodes;
   const edges = frames[step].edges;
 
-  // Separate positive and negative edges for coloring
   const posEdges = edges.filter((e) => e[2] > 0);
   const negEdges = edges.filter((e) => e[2] < 0);
 
@@ -40,55 +36,57 @@ const ConnectomeAnimation = ({ jsonPath }) => {
   const posCoords = buildEdgeCoords(posEdges);
   const negCoords = buildEdgeCoords(negEdges);
 
-  const handleSliderChange = (e) => {
-    setStep(parseInt(e.target.value));
-  };
+  const handleSliderChange = (e) => setStep(parseInt(e.target.value));
+
+  const data = [
+    // Positive edges
+    {
+      x: posCoords.x,
+      y: posCoords.y,
+      z: posCoords.z,
+      mode: "lines",
+      line: { width: 2, color: "#016ec4" },
+      type: "scatter3d",
+      name: "Positive edges",
+    },
+    // Negative edges
+    {
+      x: negCoords.x,
+      y: negCoords.y,
+      z: negCoords.z,
+      mode: "lines",
+      line: { width: 2, color: "#f89f22" },
+      type: "scatter3d",
+      name: "Negative edges",
+    },
+    // Nodes
+    {
+      x: nodes.map((n) => n[0]),
+      y: nodes.map((n) => n[1]),
+      z: nodes.map((n) => n[2]),
+      mode: "markers",
+      marker: { size: 2, color: "gray" },
+      type: "scatter3d",
+      name: "Nodes",
+    },
+  ];
 
   return (
     <div>
       <h2>Connectome Animation - Step {step + 1}</h2>
       <Plot
-        data={[
-          // Nodes
-          {
-            x: nodes.map((n) => n[0]),
-            y: nodes.map((n) => n[1]),
-            z: nodes.map((n) => n[2]),
-            mode: "markers",
-            marker: { size: 2, color: "black" },
-            type: "scatter3d",
-            name: "Nodes",
-          },
-          // Positive edges
-          {
-            x: posCoords.x,
-            y: posCoords.y,
-            z: posCoords.z,
-            mode: "lines",
-            line: { width: 2, color: "blue" },
-            type: "scatter3d",
-            name: "Positive edges",
-          },
-          // Negative edges
-          {
-            x: negCoords.x,
-            y: negCoords.y,
-            z: negCoords.z,
-            mode: "lines",
-            line: { width: 2, color: "red" },
-            type: "scatter3d",
-            name: "Negative edges",
-          },
-        ]}
+        data={data}
         layout={{
           width: 800,
           height: 600,
-          scene: { 
-            xaxis: { visible: false }, 
-            yaxis: { visible: false }, 
-            zaxis: { visible: false } 
+          scene: {
+            xaxis: { visible: false },
+            yaxis: { visible: false },
+            zaxis: { visible: false },
+            aspectmode: "data",
           },
         }}
+        style={{ width: "100%", height: "80vh" }}
       />
       <input
         type="range"
@@ -100,6 +98,4 @@ const ConnectomeAnimation = ({ jsonPath }) => {
       />
     </div>
   );
-};
-
-export default ConnectomeAnimation;
+}
