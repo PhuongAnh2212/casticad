@@ -1,5 +1,5 @@
 "use client";
-import TopNavbar from "../components/TopNavBar";
+import TopNavbar from "../src/components/TopNavBar";
 import ConnectomeAnimation from "./brain_connectome";
 
 
