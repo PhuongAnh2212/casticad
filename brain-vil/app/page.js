@@ -31,7 +31,7 @@ export default function Page() {
               Young participants exhibit more negative connections and fewer recruited nodes, reflecting efficient and specialized neural activation consistent with preserved cognitive performance.
             </p>
 
-          <h3 className="text-2xl font-semibold mb-4">Elder Connectome Graph</h3>
+          <h3 className="text-2xl font-semibold mb-4">Elderly Connectome Graph</h3>
           <div className="border rounded-lg p-4 shadow-md mb-4">
             <ConnectomeAnimation jsonPath="/group_1_connectome.json" brainVoxelsJson="/brain_voxels.json" />
           </div>
