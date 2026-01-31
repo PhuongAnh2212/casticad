@@ -4,7 +4,6 @@
 
 This repository contains code associated with a scientific study based on multimodal neuroimaging data from the LEMON (Leipzig Mind-Brain-Body) dataset.
 
----
 
 ## Dataset
 
@@ -22,7 +21,6 @@ This study uses data from the **Max Planck Institute Leipzig Mind-Brain-Body Dat
 
 The dataset is **not included** in this repository. Users must request access from the original data providers.
 
----
 
 ## Preprocessing
 
@@ -33,7 +31,6 @@ Data preprocessing follows previous studies to derive:
 
 Brain parcellation is performed using the **Brainnetome atlas**, selected for its integration of anatomical and resting-state functional information and its high replicability.
 
----
 
 ## Method
 
