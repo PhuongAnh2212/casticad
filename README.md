@@ -1,2 +1,58 @@
-# CASTICaD: A Cross-Attentional SpatioTemporal Framework Integrating Brain Connectivity and Functional Dynamics for Healthy Brain Ageing Study
-This study collects data from the “Max Planck Institute Leipzig Mind-Brain-Body Dataset” – LEMON. This dataset contains multimodal data from 228 healthy adults, including a young group (N=154, 25.1±3.1 years, range 20–35 years, 45 female) and an elderly group (N=74, 67.6±4.7 years, range 59–77 years, 37 female). In this study, we used T1-weighted (T1w), resting-state fMRI (rs-fMRI), and diffusion-weighted imaging (DWI) from 208 subjects (140 young and 68 elderly) to extract functional connectivity, structural connectivity, and time series. Data preprocessing followed previous studies to calculate functional connectivity (FC), structural connectivity (SC), and extract BOLD time series. The Brainnetome atlas was chosen as brain template for parcellation due to its construction from both rs-fMRI and anatomical information, and its high replicability.
+# CASTICaD
+
+**CASTICaD** is a cross-attentional spatiotemporal framework designed to integrate brain connectivity and functional dynamics for the study of healthy brain ageing.
+
+This repository contains code associated with a scientific study based on multimodal neuroimaging data from the LEMON (Leipzig Mind-Brain-Body) dataset.
+
+---
+
+## Dataset
+
+This study uses data from the **Max Planck Institute Leipzig Mind-Brain-Body Dataset (LEMON)**.
+
+- Total dataset: 228 healthy adults  
+- Subjects used in this study: 208  
+  - Young group: 140 subjects (25.1 ± 3.1 years, range 20–35)
+  - Elderly group: 68 subjects (67.6 ± 4.7 years, range 59–77)
+
+### Modalities
+- T1-weighted MRI (T1w)
+- Resting-state fMRI (rs-fMRI)
+- Diffusion-weighted imaging (DWI)
+
+The dataset is **not included** in this repository. Users must request access from the original data providers.
+
+---
+
+## Preprocessing
+
+Data preprocessing follows previous studies to derive:
+- Structural connectivity (SC) from DWI
+- Functional connectivity (FC) from rs-fMRI
+- Regional BOLD time series
+
+Brain parcellation is performed using the **Brainnetome atlas**, selected for its integration of anatomical and resting-state functional information and its high replicability.
+
+---
+
+## Method
+
+CASTICaD integrates:
+- Structural connectivity
+- Functional connectivity
+- Functional time series
+
+using a **cross-attention-based spatiotemporal framework** to model interactions between brain connectivity and functional dynamics.
+
+---
+
+## Repository Structure
+
+```text
+.
+├── preprocessing/
+├── models/
+├── training/
+├── utils/
+├── configs/
+└── README.md
