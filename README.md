@@ -43,16 +43,3 @@ CASTICaD integrates:
 - Functional time series
 
 using a **cross-attention-based spatiotemporal framework** to model interactions between brain connectivity and functional dynamics.
-
----
-
-## Repository Structure
-
-```text
-.
-├── preprocessing/
-├── models/
-├── training/
-├── utils/
-├── configs/
-└── README.md
